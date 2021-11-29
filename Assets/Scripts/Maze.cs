@@ -9,6 +9,9 @@ public class Maze : MonoBehaviour
     [SerializeField] public int sizeX;
     [SerializeField] public int sizeZ;
 
+    [SerializeField] private Predator enemy;
+    [SerializeField] private int numOfEnemies;
+
     //create classes for maze walls and grid cells
     [SerializeField] private MazeWall wall;
     [SerializeField] private MazeCell cellPrefab;
@@ -25,8 +28,9 @@ public class Maze : MonoBehaviour
         for (int i = 0; i < numOfEnemies; i++)
         {
             MazeCell cell = maze[rnd.Next(0, sizeX), rnd.Next(0, sizeZ)];
-            enemy.transform.position = new Vector3(cell.mazePositionX, 1f / 2, cell.mazePositionZ);
-            enemy.transform.SetParent(this.transform);
+            enemy.transform.position = new Vector3(-sizeX / 2, 0.5f, -sizeZ/2);
+            //character.transform.position = new Vector3(-mazeInstance.sizeX / 2, 0.5f, -mazeInstance.sizeZ / 2);
+            /*enemy.transform.SetParent(this.transform);*/
 
         }
     }
@@ -219,6 +223,9 @@ public class Maze : MonoBehaviour
 
         //draw resulting walls in maze after paths have been carved out
         DrawResultingMaze(maze);
+
+        //Generates enemies in the maze
+        GenerateEnemies(maze, numOfEnemies, enemy);
 
         //DrawCoins(maze);
 

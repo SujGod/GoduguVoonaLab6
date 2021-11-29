@@ -11,7 +11,6 @@ public class FieldOfView : MonoBehaviour
     private float angleIncrease;
     private List<Ray> raycasts;
     private Mesh mesh;
-    List<Vector3> viewPoints;
     [SerializeField] private bool FieldOfViewToggle; 
 
     // Start is called before the first frame update
@@ -20,15 +19,15 @@ public class FieldOfView : MonoBehaviour
         mesh = new Mesh();
         GetComponent<MeshFilter>().mesh = mesh;
         raycasts = new List<Ray>();
-        viewPoints = new List<Vector3>();
+        /*viewPoints = new List<Vector3>();*/
         //if (this.transform.tag == "Prey")
         //{
         //    transform.GetComponent<Prey>().fieldOfView = this;
         //}
-        /*else*/ if (this.transform.tag == "Predator")
+        /*else*//* if (this.transform.tag == "Predator")
         {
             transform.GetComponent<Predator>().fieldOfView = this;
-        }
+        }*/
 
 
         UpdateFieldOfView();
@@ -47,9 +46,9 @@ public class FieldOfView : MonoBehaviour
     {
         raycasts.Clear();
         angleIncrease = fov / rayCount;
-        viewPoints.Clear();
+        List<Vector3> viewPoints = new List<Vector3>();
 
-        
+
         for (int i = 0; i <= rayCount; i++)
         {
             float angle = transform.eulerAngles.y - fov / 2 + angleIncrease * i;
@@ -166,12 +165,12 @@ public class FieldOfView : MonoBehaviour
         {
             if (raycasts[i].other != null)
             {
-                if (raycasts[i].other.CompareTag("Prey"))
+                if (raycasts[i].other.CompareTag("Character"))
                 {
                     return true;
                 }
             }
-           
+
         }
 
         return false;
@@ -200,7 +199,7 @@ public class FieldOfView : MonoBehaviour
         {
             if (raycasts[i].other != null)
             {
-                if (raycasts[i].other.CompareTag("Prey"))
+                if (raycasts[i].other.CompareTag("Character"))
                 {
                     return raycasts[i].other;
                 }

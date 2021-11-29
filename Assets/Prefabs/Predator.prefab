@@ -52,7 +52,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   rot_speed: 720
-  fieldOfView: {fileID: 0}
+  fieldOfView: {fileID: -9067624644039904855}
 --- !u!114 &-9067624644039904855
 MonoBehaviour:
   m_ObjectHideFlags: 0

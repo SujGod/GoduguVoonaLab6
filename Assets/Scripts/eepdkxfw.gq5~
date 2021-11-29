@@ -9,6 +9,8 @@ public class MazeCreation : MonoBehaviour
 {
     [SerializeField] private Maze mazeInstance;
     [SerializeField] private GameObject character;
+    [SerializeField] private Predator enemy;
+    [SerializeField] private int numOfEnemies;
     //[SerializeField] private GameObject text;
     [SerializeField] private MazeCell[,] maze;
     [SerializeField] private OnExit exitTrigger;
@@ -62,12 +64,15 @@ public class MazeCreation : MonoBehaviour
         maze = createdMaze.Generate();
         Debug.Log("The maze has been generated");
 
+        //Generates enemies in the maze
+        createdMaze.GenerateEnemies(maze, numOfEnemies, enemy);
+
         //set character to start of maze (at entrance cell)
         character.transform.position = new Vector3(-mazeInstance.sizeX / 2, 0.5f, -mazeInstance.sizeZ / 2);
 
         //obtain exit cell in order to create exit trigger for displaying game over and retrying level
         MazeCell exitCell = maze[mazeInstance.sizeX - 1, mazeInstance.sizeZ - 1];
-        Vector3 triggerOffset = new Vector3(0, 1f, 1 / 2f);
+        Vector3 triggerOffset = new Vector3(0, 1 / 2f, 1 / 2f);
         exitTrigger.transform.position = exitCell.position + triggerOffset;
 
         //set exitTrigger boolean to false

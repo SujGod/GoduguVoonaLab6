@@ -8,6 +8,8 @@ public class OnExit : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         //set boolean flag to true on player collide with exit
-        exitReached = true;
+        if (other.CompareTag("Character")) { 
+            exitReached = true;
+        }
     }
 }

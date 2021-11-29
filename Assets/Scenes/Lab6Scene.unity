@@ -228,7 +228,7 @@ Transform:
   m_GameObject: {fileID: 19189814}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 2, z: 0.05}
   m_Children: []
   m_Father: {fileID: 1617398290}
   m_RootOrder: 3
@@ -264,6 +264,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sizeX: 10
   sizeZ: 10
+  enemy: {fileID: -1756560679118262332, guid: 432c6cfa6f12d4570aa80ade861b793a, type: 3}
+  numOfEnemies: 1
   wall: {fileID: 4614562632538504734, guid: 46f33f355e03355499a4d71b68b4d909, type: 3}
   cellPrefab: {fileID: 8134324936440790644, guid: 092b77c65c69c7a4bb509507047aa0da, type: 3}
 --- !u!4 &469665546

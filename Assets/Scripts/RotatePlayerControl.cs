@@ -15,7 +15,7 @@ public class RotatePlayerControl : MonoBehaviour
 	public void Initialize(InputAction rotatePlayerAction)
 	{
 		this.rotatePlayerAction = rotatePlayerAction;
-		//Cursor.visible = false;
+		Cursor.visible = false;
 		rotatePlayerAction.Enable();
 	}
 
