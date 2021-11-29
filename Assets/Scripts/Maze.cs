@@ -14,8 +14,22 @@ public class Maze : MonoBehaviour
     [SerializeField] private MazeCell cellPrefab;
     //[SerializeField] private MazeToken tokenPrefab;
 
+
     //create a counter for use in creating entrance/exit later
     private int count = 0;
+
+    public void GenerateEnemies(MazeCell[,] maze, int numOfEnemies, Predator pred)
+    {
+        Predator enemy = Instantiate(pred);
+        var rnd = new System.Random();
+        for (int i = 0; i < numOfEnemies; i++)
+        {
+            MazeCell cell = maze[rnd.Next(0, sizeX), rnd.Next(0, sizeZ)];
+            enemy.transform.position = new Vector3(cell.mazePositionX, 1f / 2, cell.mazePositionZ);
+            enemy.transform.SetParent(this.transform);
+
+        }
+    }
 
     private bool CarvePassage(MazeCell currentNode, MazeCell nextNode)
     {

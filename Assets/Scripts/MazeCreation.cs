@@ -9,6 +9,8 @@ public class MazeCreation : MonoBehaviour
 {
     [SerializeField] private Maze mazeInstance;
     [SerializeField] private GameObject character;
+    [SerializeField] private Predator enemy;
+    [SerializeField] private int numOfEnemies;
     //[SerializeField] private GameObject text;
     [SerializeField] private MazeCell[,] maze;
     [SerializeField] private OnExit exitTrigger;
@@ -61,6 +63,9 @@ public class MazeCreation : MonoBehaviour
         //generate maze for the created maze instance
         maze = createdMaze.Generate();
         Debug.Log("The maze has been generated");
+
+        //Generates enemies in the maze
+        createdMaze.GenerateEnemies(maze, numOfEnemies, enemy);
 
         //set character to start of maze (at entrance cell)
         character.transform.position = new Vector3(-mazeInstance.sizeX / 2, 0.5f, -mazeInstance.sizeZ / 2);
