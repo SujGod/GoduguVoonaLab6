@@ -268,6 +268,8 @@ MonoBehaviour:
   numOfEnemies: 1
   wall: {fileID: 4614562632538504734, guid: 46f33f355e03355499a4d71b68b4d909, type: 3}
   cellPrefab: {fileID: 8134324936440790644, guid: 092b77c65c69c7a4bb509507047aa0da, type: 3}
+  heartPrefab: {fileID: 3645973988667835428, guid: 0da98e09f3ab8414686d9afa30715301, type: 3}
+  ammoPrefab: {fileID: -518825907383838908, guid: 7cd2e1bc90e58914d9642b9912d43fac, type: 3}
 --- !u!4 &469665546
 Transform:
   m_ObjectHideFlags: 0
@@ -669,7 +671,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -718,9 +720,10 @@ GameObject:
   - component: {fileID: 2027161140}
   - component: {fileID: 2027161145}
   - component: {fileID: 2027161146}
-  m_Layer: 0
+  - component: {fileID: 2027161147}
+  m_Layer: 7
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -850,3 +853,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   playerToMove: {fileID: 2027161139}
+--- !u!114 &2027161147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2027161139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd009139ed6d03947a837e9481244dc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 0
+  ammo: 0

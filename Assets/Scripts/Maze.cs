@@ -15,7 +15,8 @@ public class Maze : MonoBehaviour
     //create classes for maze walls and grid cells
     [SerializeField] private MazeWall wall;
     [SerializeField] private MazeCell cellPrefab;
-    //[SerializeField] private MazeToken tokenPrefab;
+    [SerializeField] private HeartPowerUp heartPrefab;
+    [SerializeField] private AmmoPowerUp ammoPrefab;
 
 
     //create a counter for use in creating entrance/exit later
@@ -197,20 +198,29 @@ public class Maze : MonoBehaviour
 
     }
 
-/*        private MazeToken CreateToken(int i, int j)
+    private HeartPowerUp CreateHeartPowerUp(int i, int j)
     {
         //Instantiate maze cell
-        MazeToken newToken = Instantiate(tokenPrefab);
-        newToken.transform.SetParent(this.transform);
-
-        //set the cell position
-        newToken.position = new Vector3(-sizeX / 2 + i, 0.5f, -sizeZ / 2 + j);
+        HeartPowerUp newPowerUp = Instantiate(heartPrefab);
+        newPowerUp.transform.SetParent(this.transform);
 
         //Actually draws the cells to the relative positions
-        newToken.transform.localPosition = new Vector3(-sizeX / 2 + i, 0.5f, -sizeZ / 2 + j);
+        newPowerUp.transform.position = new Vector3(-sizeX / 2 + i, 0.5f, -sizeZ / 2 + j);
 
-        return newToken;
-    }*/
+        return newPowerUp;
+    }
+
+    private AmmoPowerUp CreateAmmoPowerUp(int i, int j)
+    {
+        //Instantiate maze cell
+        AmmoPowerUp newPowerUp = Instantiate(ammoPrefab);
+        newPowerUp.transform.SetParent(this.transform);
+
+        //Actually draws the cells to the relative positions
+        newPowerUp.transform.position = new Vector3(-sizeX / 2 + i, 0.5f, -sizeZ / 2 + j);
+
+        return newPowerUp;
+    }
 
 
     public MazeCell[,] Generate()
@@ -224,17 +234,18 @@ public class Maze : MonoBehaviour
         //draw resulting walls in maze after paths have been carved out
         DrawResultingMaze(maze);
 
-        //Generates enemies in the maze
-        GenerateEnemies(maze, numOfEnemies, enemy);
+        //Generates enemies in the maze (SAVE OFF ON GENERATING ENEMIES FOR NOW)
+        //GenerateEnemies(maze, numOfEnemies, enemy);
 
-        //DrawCoins(maze);
+        DrawPowerUps(maze);
 
         return maze;
     }
 
-/*        private void DrawCoins(MazeCell[,] maze)
+    private void DrawPowerUps(MazeCell[,] maze)
     {
         int count = 0;
+        int numOfPowerUps = 0;
         for (int i = 0; i < sizeX; i++)
         {
             for (int j = 0; j < sizeZ; j++)
@@ -245,27 +256,35 @@ public class Maze : MonoBehaviour
 
                 //if the cell has 3 walls (dead end) and cell is not entrance cell or exit cell
                 //create token at cell
-                if (cell.wallCount == 3 && count > 1 && count < (sizeX * sizeZ))
+                if ((cell.wallCount == 3 && count > 1 && count < (sizeX * sizeZ)) && numOfPowerUps < 4)
                 {
-                    CreateToken(cell.mazePositionX, cell.mazePositionZ);
+                    if ((numOfPowerUps % 2) == 0)
+                    {
+                        CreateHeartPowerUp(cell.mazePositionX, cell.mazePositionZ);
+                    }
+                    else
+                    {
+                        CreateAmmoPowerUp(cell.mazePositionX, cell.mazePositionZ);
+                    }
+                    numOfPowerUps++;
                 }
             }
         }
 
         //create at most 5 more tokens if they are not also dead end cells at random positions
         //if cell is dead end don't add token, so this will add 0 - 5 token extra random tokens in maze
-        System.Random rd = new System.Random();
+/*        System.Random rd = new System.Random();
         for (int i = 0; i < 5; i++)
         {
             MazeCell randCell = maze[rd.Next(sizeX), rd.Next(sizeZ)];
             if (randCell.wallCount != 3)
             {
-                CreateToken(randCell.mazePositionX, randCell.mazePositionZ);
+                CreatePowerUp(randCell.mazePositionX, randCell.mazePositionZ);
             }
-        }
+        }*/
 
 
-    }*/
+    }
 
     private void DrawResultingMaze(MazeCell[,] maze)
     {
@@ -310,7 +329,7 @@ public class Maze : MonoBehaviour
                 }
 
                 //if the count is greater than the first iteration and cells have bottom walls, draw bottom walls for last row in maze (creating an entrance at the bottom)
-                if (j == 0 && count > 1 && cell.bottomWall)
+                if (j == 0 && cell.bottomWall)
                 {
                     MazeWall bottomWall = Instantiate(wall);
                     bottomWall.transform.SetParent(cell.transform);

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUp : MonoBehaviour
+public class HeartPowerUp : MonoBehaviour
 {
     // Start is called before the first frame update
     float prevPos;
@@ -31,6 +31,11 @@ public class PowerUp : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(this.gameObject);
+        if (other.tag == "Character")
+        {
+            Destroy(this.gameObject);
+            Character player = (Character)other.GetComponent(typeof(Character));
+            player.health++;
+        }
     }
 }

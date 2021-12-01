@@ -10,12 +10,13 @@ GameObject:
   m_Component:
   - component: {fileID: 2439431293917749827}
   - component: {fileID: -1756560679118262332}
+  - component: {fileID: 5624546541355742622}
   - component: {fileID: -9067624644039904855}
   - component: {fileID: 9211217154234155880}
   - component: {fileID: 2691179778094406888}
   - component: {fileID: 8343165027561272110}
   - component: {fileID: 5091813706125171046}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Predator
   m_TagString: Predator
   m_Icon: {fileID: 0}
@@ -50,9 +51,32 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc3fe8a446075494391ce9167405bb40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  rot_speed: 720
-  fieldOfView: {fileID: -9067624644039904855}
+  fovPredator: {fileID: 5624546541355742622}
+  preyListCount: 0
+  movementSpeed: 3
+--- !u!114 &5624546541355742622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2439431293917749826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e485169bc24190a4c82e53770dbee9a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRadius: 1
+  viewAngle: 45
+  meshRes: 3
+  meshFilter: {fileID: 9211217154234155880}
+  visiblePrey: []
+  obstacleMask:
+    serializedVersion: 2
+    m_Bits: 64
+  preyMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!114 &-9067624644039904855
 MonoBehaviour:
   m_ObjectHideFlags: 0

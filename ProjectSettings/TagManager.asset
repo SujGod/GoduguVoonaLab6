@@ -3,16 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Predator
+  - Wall
+  - Character
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Predator
   - Water
   - UI
-  - 
-  - 
+  - Obstacle
+  - Character
   - 
   - 
   - 
