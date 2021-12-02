@@ -9,6 +9,7 @@ public class InputManager : MonoBehaviour
 {
 	[SerializeField] private MovementControl movementController;
 	[SerializeField] private RotatePlayerControl rotatePlayerController;
+	[SerializeField] private Gun gun;
 	private PlayerInputAction inputScheme;
 
 	private void Awake()
@@ -21,5 +22,7 @@ public class InputManager : MonoBehaviour
 	private void OnEnable()
 	{
 		var _ = new QuitHandler(inputScheme.Player.Quit);
+		var gunHandler = new GunshotHandler(inputScheme.Player.FireGun, this.gun);
+
 	}
 }

@@ -43,6 +43,14 @@ namespace GoduguVoona.Input
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Fire Gun"",
+                    ""type"": ""Button"",
+                    ""id"": ""16ca6c0c-5c14-4c05-b5cb-0d89c60e45c0"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -243,6 +251,17 @@ namespace GoduguVoona.Input
                     ""action"": ""Quit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ccbe2b10-fd1e-49df-92c3-f9937f8ef778"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire Gun"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -254,6 +273,7 @@ namespace GoduguVoona.Input
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
             m_Player_RotatePlayer = m_Player.FindAction("Rotate Player", throwIfNotFound: true);
             m_Player_Quit = m_Player.FindAction("Quit", throwIfNotFound: true);
+            m_Player_FireGun = m_Player.FindAction("Fire Gun", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -306,6 +326,7 @@ namespace GoduguVoona.Input
         private readonly InputAction m_Player_Move;
         private readonly InputAction m_Player_RotatePlayer;
         private readonly InputAction m_Player_Quit;
+        private readonly InputAction m_Player_FireGun;
         public struct PlayerActions
         {
             private @PlayerInputAction m_Wrapper;
@@ -313,6 +334,7 @@ namespace GoduguVoona.Input
             public InputAction @Move => m_Wrapper.m_Player_Move;
             public InputAction @RotatePlayer => m_Wrapper.m_Player_RotatePlayer;
             public InputAction @Quit => m_Wrapper.m_Player_Quit;
+            public InputAction @FireGun => m_Wrapper.m_Player_FireGun;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -331,6 +353,9 @@ namespace GoduguVoona.Input
                     @Quit.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuit;
                     @Quit.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuit;
                     @Quit.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnQuit;
+                    @FireGun.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireGun;
+                    @FireGun.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireGun;
+                    @FireGun.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireGun;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -344,6 +369,9 @@ namespace GoduguVoona.Input
                     @Quit.started += instance.OnQuit;
                     @Quit.performed += instance.OnQuit;
                     @Quit.canceled += instance.OnQuit;
+                    @FireGun.started += instance.OnFireGun;
+                    @FireGun.performed += instance.OnFireGun;
+                    @FireGun.canceled += instance.OnFireGun;
                 }
             }
         }
@@ -353,6 +381,7 @@ namespace GoduguVoona.Input
             void OnMove(InputAction.CallbackContext context);
             void OnRotatePlayer(InputAction.CallbackContext context);
             void OnQuit(InputAction.CallbackContext context);
+            void OnFireGun(InputAction.CallbackContext context);
         }
     }
 }

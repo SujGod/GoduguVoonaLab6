@@ -1,5 +1,5 @@
 {
-    "name": "New Controls",
+    "name": "Input",
     "maps": [
         {
             "name": "Player",
@@ -25,6 +25,14 @@
                     "name": "Quit",
                     "type": "Button",
                     "id": "19a2d97c-c76c-4d07-ad44-fa1dbeebd068",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Fire Gun",
+                    "type": "Button",
+                    "id": "16ca6c0c-5c14-4c05-b5cb-0d89c60e45c0",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -226,6 +234,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Quit",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ccbe2b10-fd1e-49df-92c3-f9937f8ef778",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fire Gun",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -7,6 +7,7 @@ public class RotatePlayerControl : MonoBehaviour
 	private InputAction rotatePlayerAction;
 	[SerializeField] private Transform cameraToMove;
 	[SerializeField] private GameObject playerToMove;
+	[SerializeField] private GameObject gunToMove;
 	[SerializeField] private float speedX;
 	[SerializeField] private float speedY;
 	[SerializeField] private float xClamp;
@@ -25,12 +26,14 @@ public class RotatePlayerControl : MonoBehaviour
 		Vector2 direction = rotatePlayerAction.ReadValue<Vector2>();
 
 		playerToMove.transform.Rotate(Vector3.up, direction.x * speedX * Time.deltaTime);
+/*		gunToMove.transform.Rotate(Vector3.up, direction.x * speedX * Time.deltaTime);*/
 
 		xRotate -= direction.y * speedY;
 		xRotate = Mathf.Clamp(xRotate, -xClamp, xClamp);
 		Vector3 targetRotate = playerToMove.transform.eulerAngles;
 		targetRotate.x = xRotate;
 		cameraToMove.transform.eulerAngles = targetRotate;
+		gunToMove.transform.eulerAngles = targetRotate;
 
 		cameraToMove.transform.position = playerToMove.transform.position;
 	}
