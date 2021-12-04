@@ -7,6 +7,7 @@ TagManager:
   - Predator
   - Wall
   - Character
+  - Bullet
   layers:
   - Default
   - TransparentFX

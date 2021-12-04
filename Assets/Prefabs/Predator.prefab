@@ -9,13 +9,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2439431293917749827}
-  - component: {fileID: -1756560679118262332}
   - component: {fileID: 5624546541355742622}
   - component: {fileID: -9067624644039904855}
   - component: {fileID: 9211217154234155880}
   - component: {fileID: 2691179778094406888}
-  - component: {fileID: 8343165027561272110}
   - component: {fileID: 5091813706125171046}
+  - component: {fileID: 7516875827456252920}
+  - component: {fileID: -6434153518434634037}
   m_Layer: 3
   m_Name: Predator
   m_TagString: Predator
@@ -39,21 +39,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-1756560679118262332
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2439431293917749826}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc3fe8a446075494391ce9167405bb40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fovPredator: {fileID: 5624546541355742622}
-  preyListCount: 0
-  movementSpeed: 3
 --- !u!114 &5624546541355742622
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viewRadius: 1
-  viewAngle: 45
+  viewAngle: 60
   meshRes: 3
   meshFilter: {fileID: 9211217154234155880}
   visiblePrey: []
@@ -121,7 +106,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 036e2d1e4ea757c4398c3e9c30fce97f, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -143,20 +128,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &8343165027561272110
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2439431293917749826}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &5091813706125171046
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -173,6 +144,35 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 84
   m_CollisionDetection: 0
+--- !u!65 &7516875827456252920
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2439431293917749826}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-6434153518434634037
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2439431293917749826}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc3fe8a446075494391ce9167405bb40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fovPredator: {fileID: 5624546541355742622}
+  health: 0
+  preyListCount: 0
+  movementSpeed: 3
 --- !u!1 &2439431293921269143
 GameObject:
   m_ObjectHideFlags: 0

@@ -55,6 +55,8 @@ public class MazeCreation : MonoBehaviour
 
     private void CreateMaze()
     {
+        Camera.main.clearFlags = CameraClearFlags.Skybox;
+        //Camera.main.rect = new Rect(-.5f, 0f, 1f, 1f);
         //create instance of the maze for retrying level
         createdMaze = Instantiate(mazeInstance);
 
@@ -72,6 +74,8 @@ public class MazeCreation : MonoBehaviour
 
         //set exitTrigger boolean to false
         exitTrigger.exitReached = false;
+        Camera.main.clearFlags = CameraClearFlags.Depth;
+        Camera.main.rect = new Rect(-0.25f, 0f, 0.5f, 0.5f);
     }
 
 /*    IEnumerator StopGameOverText()

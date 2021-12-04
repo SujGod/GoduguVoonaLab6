@@ -7,10 +7,12 @@ public class Character : MonoBehaviour
     // Start is called before the first frame update
     public int health;
     public int ammo;
+    public bool keyObtained;
     void Start()
     {
         health = 5;
         ammo = 10;
+        keyObtained = false;
     }
 
     // Update is called once per frame

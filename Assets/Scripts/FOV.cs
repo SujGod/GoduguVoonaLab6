@@ -88,7 +88,7 @@ using UnityEngine;
             DrawFOV();
         }
 
-        public Vector3 GetNewDirection()
+/*        public Vector3 GetNewDirection()
         {
             //get a random integer between 0 and the list of the ray count
             System.Random random = new System.Random();
@@ -129,6 +129,23 @@ using UnityEngine;
             //if all rays are hit rotate either right or left and return a zero vector
             RotateMore();
             return Vector3.zero;
+        }*/
+
+        public Vector3 GetNewDirection()
+        {
+            System.Random random = new System.Random();
+            int startIndex = random.Next(listOfCurrentRays.Count);
+            while (listOfCurrentRays[startIndex].hit)
+            {
+                if (startIndex == listOfCurrentRays.Count - 1)
+                {
+                    RotateMore();
+                }
+                startIndex++;
+            }
+
+            return (listOfCurrentRays[startIndex].point - transform.position).normalized;
+
         }
 
         private void RotateMore()

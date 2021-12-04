@@ -17,6 +17,7 @@ public class Maze : MonoBehaviour
     [SerializeField] private MazeCell cellPrefab;
     [SerializeField] private HeartPowerUp heartPrefab;
     [SerializeField] private AmmoPowerUp ammoPrefab;
+    [SerializeField] private Key keyPrefab;
 
 
     //create a counter for use in creating entrance/exit later
@@ -29,7 +30,7 @@ public class Maze : MonoBehaviour
         for (int i = 0; i < numOfEnemies; i++)
         {
             MazeCell cell = maze[rnd.Next(0, sizeX), rnd.Next(0, sizeZ)];
-            enemy.transform.position = new Vector3(-sizeX / 2, 0.5f, -sizeZ/2);
+            enemy.transform.position = new Vector3(0, 0.5f, 0);
             //character.transform.position = new Vector3(-mazeInstance.sizeX / 2, 0.5f, -mazeInstance.sizeZ / 2);
             /*enemy.transform.SetParent(this.transform);*/
 
@@ -198,6 +199,18 @@ public class Maze : MonoBehaviour
 
     }
 
+    private Key CreateKey(int i, int j)
+    {
+        //Instantiate maze cell
+        Key newKey = Instantiate(keyPrefab);
+        newKey.transform.SetParent(this.transform);
+
+        //Actually draws the cells to the relative positions
+        newKey.transform.position = new Vector3(-sizeX / 2 + i, 0.5f, -sizeZ / 2 + j);
+
+        return newKey;
+    }
+
     private HeartPowerUp CreateHeartPowerUp(int i, int j)
     {
         //Instantiate maze cell
@@ -235,17 +248,18 @@ public class Maze : MonoBehaviour
         DrawResultingMaze(maze);
 
         //Generates enemies in the maze (SAVE OFF ON GENERATING ENEMIES FOR NOW)
-        //GenerateEnemies(maze, numOfEnemies, enemy);
+        GenerateEnemies(maze, numOfEnemies, enemy);
 
-        DrawPowerUps(maze);
+        DrawMazeItems(maze);
 
         return maze;
     }
 
-    private void DrawPowerUps(MazeCell[,] maze)
+    private void DrawMazeItems(MazeCell[,] maze)
     {
         int count = 0;
         int numOfPowerUps = 0;
+        bool keyCreated = false;
         for (int i = 0; i < sizeX; i++)
         {
             for (int j = 0; j < sizeZ; j++)
@@ -268,6 +282,12 @@ public class Maze : MonoBehaviour
                     }
                     numOfPowerUps++;
                 }
+                else if ((cell.wallCount == 3 && count > 1 && count < (sizeX * sizeZ)) && !keyCreated)
+                {
+                    CreateKey(cell.mazePositionX, cell.mazePositionZ);
+                    keyCreated = true;
+                }
+
             }
         }
 
