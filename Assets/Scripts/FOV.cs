@@ -88,17 +88,33 @@ using UnityEngine;
             DrawFOV();
         }
 
-/*        public Vector3 GetNewDirection()
-        {
-            //get a random integer between 0 and the list of the ray count
-            System.Random random = new System.Random();
-            int i = random.Next(listOfCurrentRays.Count);
-            int newEndPoint = i;
-            Quaternion rotation;
+    public Vector3 GetNewDirection()
+    {
+        //get a random integer between 0 and the list of the ray count
+        System.Random random = new System.Random();
+        int i = random.Next(listOfCurrentRays.Count);
+        int newEndPoint = i;
+        Quaternion rotation;
 
-            //iterate from the current ray to the end of the ray list to find a ray that has not been hit
-            // and return the direction associate with the point of that ray to move in a direction that is clear
-            while (i < listOfCurrentRays.Count)
+        //iterate from the current ray to the end of the ray list to find a ray that has not been hit
+        // and return the direction associate with the point of that ray to move in a direction that is clear
+        while (i < listOfCurrentRays.Count)
+        {
+            if (!listOfCurrentRays[i].hit)
+            {
+                rotation = Quaternion.LookRotation((listOfCurrentRays[i].point - transform.position).normalized);
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, Time.deltaTime * 360f);
+                return (listOfCurrentRays[i].point - transform.position).normalized;
+            }
+            i++;
+        }
+
+        //if reached end of list start from beginning of list and go to original 'i' value, repeating the same
+        //process as aboe
+        if (i == listOfCurrentRays.Count)
+        {
+            i = 0;
+            while (i < newEndPoint)
             {
                 if (!listOfCurrentRays[i].hit)
                 {
@@ -108,47 +124,14 @@ using UnityEngine;
                 }
                 i++;
             }
-
-            //if reached end of list start from beginning of list and go to original 'i' value, repeating the same
-            //process as aboe
-            if (i == listOfCurrentRays.Count)
-            {
-                i = 0;
-                while (i < newEndPoint)
-                {
-                    if (!listOfCurrentRays[i].hit)
-                    {
-                        rotation = Quaternion.LookRotation((listOfCurrentRays[i].point - transform.position).normalized);
-                        transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, Time.deltaTime * 360f);
-                        return (listOfCurrentRays[i].point - transform.position).normalized;
-                    }
-                    i++;
-                }
-            }
-
-            //if all rays are hit rotate either right or left and return a zero vector
-            RotateMore();
-            return Vector3.zero;
-        }*/
-
-        public Vector3 GetNewDirection()
-        {
-            System.Random random = new System.Random();
-            int startIndex = random.Next(listOfCurrentRays.Count);
-            while (listOfCurrentRays[startIndex].hit)
-            {
-                if (startIndex == listOfCurrentRays.Count - 1)
-                {
-                    RotateMore();
-                }
-                startIndex++;
-            }
-
-            return (listOfCurrentRays[startIndex].point - transform.position).normalized;
-
         }
 
-        private void RotateMore()
+        //if all rays are hit rotate either right or left and return a zero vector
+        RotateMore();
+        return Vector3.zero;
+    }
+
+    private void RotateMore()
         {
             //get a random variable
             System.Random random = new System.Random();

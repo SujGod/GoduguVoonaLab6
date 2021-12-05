@@ -9,7 +9,6 @@ public class MazeCreation : MonoBehaviour
 {
     [SerializeField] private Maze mazeInstance;
     [SerializeField] private GameObject character;
-    //[SerializeField] private GameObject text;
     [SerializeField] private MazeCell[,] maze;
     [SerializeField] private OnExit exitTrigger;
     private Maze createdMaze;
@@ -20,7 +19,6 @@ public class MazeCreation : MonoBehaviour
         //create the first random maze on startup
         CreateMaze();
         allItemsDeleted = false;
-        //text.SetActive(false);
     }
 
     private void Update()
@@ -51,6 +49,7 @@ public class MazeCreation : MonoBehaviour
             //stop displaying the game over text
             //StartCoroutine(StopGameOverText());
         }
+
     }
 
     private void CreateMaze()
@@ -78,10 +77,4 @@ public class MazeCreation : MonoBehaviour
         Camera.main.rect = new Rect(-0.25f, 0f, 0.5f, 0.5f);
     }
 
-/*    IEnumerator StopGameOverText()
-    {
-        //display game over text for 2 seconds then turn it off
-        yield return new WaitForSeconds(2);
-        text.SetActive(false);
-    }*/
 }

@@ -100,6 +100,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Predator : MonoBehaviour
 {
@@ -107,6 +108,9 @@ public class Predator : MonoBehaviour
     public FOV fovPredator;
     private Vector3 direction;
     public int health;
+    [SerializeField] private float maximumHealth;
+    public GameObject healthBarUI;
+    public Slider slider;
 
     public int preyListCount;
 
@@ -117,12 +121,14 @@ public class Predator : MonoBehaviour
     void Start()
     {
         direction = Vector3.zero;
-        health = 3;
+        health = (int)maximumHealth;
         newMaterialWhenShot = Resources.Load("HitColor", typeof(Material)) as Material;
         originalMaterial = this.GetComponent<Renderer>().material;
+        slider.value = health / maximumHealth;
+        healthBarUI.SetActive(true);
     }
 
-    public void FixedUpdate()
+    public void Update()
     {
         //get the list of prey that are in the field of vision
         List<Transform> preyList = fovPredator.FindVisiblePrey();
@@ -168,6 +174,8 @@ public class Predator : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
+
+        slider.value = health / maximumHealth;
     }
 
     public void ChangeColorOnHit()

@@ -25,14 +25,13 @@ public class Maze : MonoBehaviour
 
     public void GenerateEnemies(MazeCell[,] maze, int numOfEnemies, Predator pred)
     {
-        Predator enemy = Instantiate(pred);
-        var rnd = new System.Random();
         for (int i = 0; i < numOfEnemies; i++)
         {
-            MazeCell cell = maze[rnd.Next(0, sizeX), rnd.Next(0, sizeZ)];
-            enemy.transform.position = new Vector3(0, 0.5f, 0);
-            //character.transform.position = new Vector3(-mazeInstance.sizeX / 2, 0.5f, -mazeInstance.sizeZ / 2);
-            /*enemy.transform.SetParent(this.transform);*/
+            var rnd = new System.Random();
+            Predator enemy = Instantiate(pred);
+            MazeCell cell = maze[rnd.Next(0, sizeX / 2), rnd.Next(0, sizeZ / 2)];
+            enemy.transform.position = new Vector3(cell.mazePositionX, 1f / 2, cell.mazePositionZ);
+            enemy.transform.SetParent(this.transform);
 
         }
     }
@@ -365,6 +364,11 @@ public class Maze : MonoBehaviour
         //get the coordinates of each cell in the maze
         Vector2 coordinates = new Vector2(cell.position.x, cell.position.z);
         return coordinates;
+    }
+
+    public Maze GetMaze()
+    {
+        return this;
     }
 
     public void DestroyMaze()

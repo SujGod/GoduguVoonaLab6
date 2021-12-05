@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         this.transform.position += (transform.forward * Time.deltaTime * bulletSpeed);
     }
@@ -38,7 +38,6 @@ public class Bullet : MonoBehaviour
             Destroy(this.gameObject);
             Predator predator = (Predator)collision.collider.GetComponent(typeof(Predator));
             predator.health--;
-            predator.ChangeColorOnHit();
         }
     }
 }
