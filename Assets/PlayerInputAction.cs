@@ -51,6 +51,14 @@ namespace GoduguVoona.Input
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Speed"",
+                    ""type"": ""Button"",
+                    ""id"": ""8593155a-9115-47a1-8c3e-18af96dca150"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -262,6 +270,17 @@ namespace GoduguVoona.Input
                     ""action"": ""Fire Gun"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d7072d40-d1d1-480f-a978-96d8aa03fee1"",
+                    ""path"": ""<Keyboard>/shift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Speed"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -274,6 +293,7 @@ namespace GoduguVoona.Input
             m_Player_RotatePlayer = m_Player.FindAction("Rotate Player", throwIfNotFound: true);
             m_Player_Quit = m_Player.FindAction("Quit", throwIfNotFound: true);
             m_Player_FireGun = m_Player.FindAction("Fire Gun", throwIfNotFound: true);
+            m_Player_Speed = m_Player.FindAction("Speed", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -327,6 +347,7 @@ namespace GoduguVoona.Input
         private readonly InputAction m_Player_RotatePlayer;
         private readonly InputAction m_Player_Quit;
         private readonly InputAction m_Player_FireGun;
+        private readonly InputAction m_Player_Speed;
         public struct PlayerActions
         {
             private @PlayerInputAction m_Wrapper;
@@ -335,6 +356,7 @@ namespace GoduguVoona.Input
             public InputAction @RotatePlayer => m_Wrapper.m_Player_RotatePlayer;
             public InputAction @Quit => m_Wrapper.m_Player_Quit;
             public InputAction @FireGun => m_Wrapper.m_Player_FireGun;
+            public InputAction @Speed => m_Wrapper.m_Player_Speed;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -356,6 +378,9 @@ namespace GoduguVoona.Input
                     @FireGun.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireGun;
                     @FireGun.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireGun;
                     @FireGun.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFireGun;
+                    @Speed.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpeed;
+                    @Speed.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpeed;
+                    @Speed.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpeed;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -372,6 +397,9 @@ namespace GoduguVoona.Input
                     @FireGun.started += instance.OnFireGun;
                     @FireGun.performed += instance.OnFireGun;
                     @FireGun.canceled += instance.OnFireGun;
+                    @Speed.started += instance.OnSpeed;
+                    @Speed.performed += instance.OnSpeed;
+                    @Speed.canceled += instance.OnSpeed;
                 }
             }
         }
@@ -382,6 +410,7 @@ namespace GoduguVoona.Input
             void OnRotatePlayer(InputAction.CallbackContext context);
             void OnQuit(InputAction.CallbackContext context);
             void OnFireGun(InputAction.CallbackContext context);
+            void OnSpeed(InputAction.CallbackContext context);
         }
     }
 }

@@ -29,7 +29,6 @@ public class HeadsUpDisplay : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
         ammoBarUI.SetActive(true);
         characterhealthBarUI.SetActive(true);
 
@@ -63,6 +62,11 @@ public class HeadsUpDisplay : MonoBehaviour
         characterHealthSlider.value = health / maxHealth;
         ammoBarSlider.value = ammo / maxAmmo;
 
+        if (health > maxHealth)
+        {
+            maxHealth = health;
+        }
+
         if (key)
         {
             keyDisplay.text = "Yes";
@@ -82,6 +86,11 @@ public class HeadsUpDisplay : MonoBehaviour
         if (health != player.health)
         {
             health = player.health;
+        }
+
+        if (maxHealth != player.maxHealth)
+        {
+            maxHealth = player.maxHealth;
         }
 
         if (key != player.keyObtained)

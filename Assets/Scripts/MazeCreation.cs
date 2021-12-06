@@ -9,6 +9,7 @@ public class MazeCreation : MonoBehaviour
 {
     [SerializeField] private Maze mazeInstance;
     [SerializeField] private GameObject character;
+    private Character player;
     [SerializeField] private MazeCell[,] maze;
     [SerializeField] private OnExit exitTrigger;
     private Maze createdMaze;
@@ -17,6 +18,7 @@ public class MazeCreation : MonoBehaviour
     void Start()
     {
         //create the first random maze on startup
+        player = (Character)character.GetComponent(typeof(Character));
         CreateMaze();
         allItemsDeleted = false;
     }
@@ -42,6 +44,9 @@ public class MazeCreation : MonoBehaviour
         {
             //create new maze
             CreateMaze();
+            player.ResetAmmo();
+            player.ResetHealth();
+            player.ResetKey();
 
             //set flag back to false for items not being deleted in the maze
             allItemsDeleted = false;

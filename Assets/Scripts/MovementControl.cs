@@ -5,13 +5,35 @@ public class MovementControl : MonoBehaviour
 {
 	[SerializeField] private float speed;
 	[SerializeField] private GameObject playerToMove;
+	private float originalSpeed;
 	private InputAction moveAction;
 
 
-	public void Initialize(InputAction moveAction)
+	public void Initialize(InputAction moveAction, InputAction speedAction)
 	{
 		this.moveAction = moveAction;
+
+		//initialize originalSpeed to speed var for reseting later
+		originalSpeed = speed;
+
+		//shift button being performed and cancelled 
+		speedAction.performed += SpeedEnhanced;
+		speedAction.canceled += ResetSpeed;
+
 		moveAction.Enable();
+		speedAction.Enable();
+	}
+
+	private void SpeedEnhanced(InputAction.CallbackContext obj)
+	{
+		//double speed if shift key is pressed
+		speed = speed * 2;
+	}
+
+	private void ResetSpeed(InputAction.CallbackContext obj)
+	{
+		//if shift key is cancelled reset to normal speed
+		speed = originalSpeed;
 	}
 
 	private void FixedUpdate()

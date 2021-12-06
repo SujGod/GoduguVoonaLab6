@@ -17,6 +17,8 @@ public class RotatePlayerControl : MonoBehaviour
 	{
 		this.rotatePlayerAction = rotatePlayerAction;
 		Cursor.visible = false;
+		Cursor.lockState = CursorLockMode.Locked;
+
 		rotatePlayerAction.Enable();
 	}
 

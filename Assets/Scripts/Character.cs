@@ -43,6 +43,22 @@ public class Character : MonoBehaviour
         }
     }
 
+    public void ResetHealth()
+    {
+        health = (int)maxHealth;
+        maxHealth = 5;
+    }
+
+    public void ResetAmmo()
+    {
+        ammo = (int)(maxAmmo / 3);
+    }
+
+    public void ResetKey()
+    {
+        keyObtained = false;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.collider.tag == "Predator")
