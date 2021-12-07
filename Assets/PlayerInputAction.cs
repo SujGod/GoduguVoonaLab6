@@ -59,6 +59,14 @@ namespace GoduguVoona.Input
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""3ad49d27-0fe1-4a7c-92c4-9424818f37bc"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -281,6 +289,17 @@ namespace GoduguVoona.Input
                     ""action"": ""Speed"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1ed43f43-0aea-40e1-b6f4-83bed1d1fa7d"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -294,6 +313,7 @@ namespace GoduguVoona.Input
             m_Player_Quit = m_Player.FindAction("Quit", throwIfNotFound: true);
             m_Player_FireGun = m_Player.FindAction("Fire Gun", throwIfNotFound: true);
             m_Player_Speed = m_Player.FindAction("Speed", throwIfNotFound: true);
+            m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -348,6 +368,7 @@ namespace GoduguVoona.Input
         private readonly InputAction m_Player_Quit;
         private readonly InputAction m_Player_FireGun;
         private readonly InputAction m_Player_Speed;
+        private readonly InputAction m_Player_Jump;
         public struct PlayerActions
         {
             private @PlayerInputAction m_Wrapper;
@@ -357,6 +378,7 @@ namespace GoduguVoona.Input
             public InputAction @Quit => m_Wrapper.m_Player_Quit;
             public InputAction @FireGun => m_Wrapper.m_Player_FireGun;
             public InputAction @Speed => m_Wrapper.m_Player_Speed;
+            public InputAction @Jump => m_Wrapper.m_Player_Jump;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -381,6 +403,9 @@ namespace GoduguVoona.Input
                     @Speed.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpeed;
                     @Speed.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpeed;
                     @Speed.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSpeed;
+                    @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                    @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                    @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
                 }
                 m_Wrapper.m_PlayerActionsCallbackInterface = instance;
                 if (instance != null)
@@ -400,6 +425,9 @@ namespace GoduguVoona.Input
                     @Speed.started += instance.OnSpeed;
                     @Speed.performed += instance.OnSpeed;
                     @Speed.canceled += instance.OnSpeed;
+                    @Jump.started += instance.OnJump;
+                    @Jump.performed += instance.OnJump;
+                    @Jump.canceled += instance.OnJump;
                 }
             }
         }
@@ -411,6 +439,7 @@ namespace GoduguVoona.Input
             void OnQuit(InputAction.CallbackContext context);
             void OnFireGun(InputAction.CallbackContext context);
             void OnSpeed(InputAction.CallbackContext context);
+            void OnJump(InputAction.CallbackContext context);
         }
     }
 }
