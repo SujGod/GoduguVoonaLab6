@@ -6,29 +6,18 @@ public class MovementControl : MonoBehaviour
 	[SerializeField] public float speed;
 	[SerializeField] private GameObject playerToMove;
 	private InputAction moveAction;
-	public float jumpHeight;
-	public float jumpforce;
-	private Rigidbody rb;
-	private float groundPos;
 	
 
 	public void Initialize(InputAction moveAction, InputAction speedAction, InputAction jumpAction)
 	{
 		this.moveAction = moveAction;
 
-        groundPos = transform.position.y;
-		rb = playerToMove.GetComponent<Rigidbody>();
-
 		//shift button being performed and cancelled 
 		speedAction.performed += SpeedEnhanced;
 		speedAction.canceled += ResetSpeed;
 
-		//space bar button makes character jump
-		jumpAction.performed += Jump;
-
 		moveAction.Enable();
 		speedAction.Enable();
-		jumpAction.Enable();
 	}
 
 	private void SpeedEnhanced(InputAction.CallbackContext obj)
@@ -43,13 +32,6 @@ public class MovementControl : MonoBehaviour
 		//if shift key is cancelled reset to normal speed
 		StaminaBar.instance.isRunning = false;
 	}
-
-	private void Jump(InputAction.CallbackContext obj)
-    {
-		
-		rb.AddForce(Vector3.up * jumpforce, ForceMode.Impulse);
-        
-    }
 
 	private void FixedUpdate()
 	{

@@ -31,7 +31,7 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("This is the health " + health + " and this is the ammo count " + ammo);
+        Debug.Log("This is the health " + health + " and this is the ammo count " + ammo);
         if (health <= 0)
         {
             Debug.Log("YOU DIED");
@@ -83,8 +83,6 @@ public class Character : MonoBehaviour
             return false;
         }
     }
-
-
 
     IEnumerator StopGameOverText()
     {
