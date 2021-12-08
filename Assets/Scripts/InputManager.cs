@@ -15,7 +15,7 @@ public class InputManager : MonoBehaviour
 	private void Awake()
 	{
 		inputScheme = new PlayerInputAction();
-		movementController.Initialize(inputScheme.Player.Move, inputScheme.Player.Speed, inputScheme.Player.Jump);
+		movementController.Initialize(inputScheme.Player.Move, inputScheme.Player.Speed);
 		rotatePlayerController.Initialize(inputScheme.Player.RotatePlayer);
 	}
 

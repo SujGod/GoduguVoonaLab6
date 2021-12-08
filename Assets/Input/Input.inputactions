@@ -44,14 +44,6 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
-                },
-                {
-                    "name": "Jump",
-                    "type": "Button",
-                    "id": "3ad49d27-0fe1-4a7c-92c4-9424818f37bc",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -272,17 +264,6 @@
                     "processors": "",
                     "groups": "",
                     "action": "Speed",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "1ed43f43-0aea-40e1-b6f4-83bed1d1fa7d",
-                    "path": "<Keyboard>/space",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

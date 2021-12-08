@@ -8,7 +8,7 @@ public class MovementControl : MonoBehaviour
 	private InputAction moveAction;
 	
 
-	public void Initialize(InputAction moveAction, InputAction speedAction, InputAction jumpAction)
+	public void Initialize(InputAction moveAction, InputAction speedAction)
 	{
 		this.moveAction = moveAction;
 
