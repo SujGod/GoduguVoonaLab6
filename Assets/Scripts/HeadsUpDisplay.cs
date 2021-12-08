@@ -65,13 +65,6 @@ public class HeadsUpDisplay : MonoBehaviour
         ammoDisplay.text = ammo.ToString();
         healthDisplay.text = health.ToString();
         scoreDisplay.text = score.ToString();
-        characterHealthSlider.value = health / maxHealth;
-        ammoBarSlider.value = ammo / maxAmmo;
-
-        if (health > maxHealth)
-        {
-            maxHealth = health;
-        }
 
         if (key)
         {
@@ -108,6 +101,9 @@ public class HeadsUpDisplay : MonoBehaviour
         {
             key = player.keyObtained;
         }
+
+        characterHealthSlider.value = health / maxHealth;
+        ammoBarSlider.value = ammo / maxAmmo;
 
     }
 }

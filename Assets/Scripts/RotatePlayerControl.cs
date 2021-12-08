@@ -28,7 +28,6 @@ public class RotatePlayerControl : MonoBehaviour
 		Vector2 direction = rotatePlayerAction.ReadValue<Vector2>();
 
 		playerToMove.transform.Rotate(Vector3.up, direction.x * speedX * Time.deltaTime);
-/*		gunToMove.transform.Rotate(Vector3.up, direction.x * speedX * Time.deltaTime);*/
 
 		xRotate -= direction.y * speedY;
 		xRotate = Mathf.Clamp(xRotate, -xClamp, xClamp);

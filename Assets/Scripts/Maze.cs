@@ -289,20 +289,6 @@ public class Maze : MonoBehaviour
 
             }
         }
-
-        //create at most 5 more tokens if they are not also dead end cells at random positions
-        //if cell is dead end don't add token, so this will add 0 - 5 token extra random tokens in maze
-/*        System.Random rd = new System.Random();
-        for (int i = 0; i < 5; i++)
-        {
-            MazeCell randCell = maze[rd.Next(sizeX), rd.Next(sizeZ)];
-            if (randCell.wallCount != 3)
-            {
-                CreatePowerUp(randCell.mazePositionX, randCell.mazePositionZ);
-            }
-        }*/
-
-
     }
 
     private void DrawResultingMaze(MazeCell[,] maze)

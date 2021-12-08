@@ -5,7 +5,6 @@ using UnityEngine.InputSystem;
 
 public class GunshotHandler
 {
-	private InputAction fireGunAction;
 	private Gun gun;
 
 	public GunshotHandler(InputAction fireGunAction, Gun gun)
@@ -19,6 +18,4 @@ public class GunshotHandler
 	{
 		gun.FireBullet();
 	}
-
-
 }

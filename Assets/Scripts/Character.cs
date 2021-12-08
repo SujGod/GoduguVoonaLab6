@@ -13,13 +13,10 @@ public class Character : MonoBehaviour
     public bool keyObtained;
     private Maze maze;
 
-    [SerializeField] private float knockbackRadius;
-    [SerializeField] private float knockbackStrength;
     [SerializeField] private GameObject text;
     void Start()
     {
         maze = new Maze();
-        /* health = (int)maximumHealth;*/
         maxHealth = 5;
         health = (int)maxHealth;
         maxAmmo = 30;
@@ -43,6 +40,10 @@ public class Character : MonoBehaviour
         {
             Debug.Log("YOU'RE OUT OF AMMO");
         }
+        if (health > maxHealth)
+        {
+            maxHealth = health;
+        }
     }
     public void IncrementScore()
     {
@@ -51,8 +52,8 @@ public class Character : MonoBehaviour
 
     public void ResetHealth()
     {
-        health = (int)maxHealth;
         maxHealth = 5;
+        health = (int)maxHealth;
     }
 
     public void ResetAmmo()

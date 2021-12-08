@@ -6,10 +6,6 @@ public class OnExit : MonoBehaviour
 {
     public bool exitReached;
     public GameObject player;
-    void Start()
-    {
-        
-    }
 
     private void OnCollisionEnter(Collision collision)
     {

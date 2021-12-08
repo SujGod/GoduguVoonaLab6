@@ -34,9 +34,6 @@ public class MazeCreation : MonoBehaviour
 
             //set boolean flag to true for all items being deleted
             allItemsDeleted = true;
-
-            //display game over text
-            //text.SetActive(true);
         }
 
         //if all items are deleted
@@ -44,15 +41,14 @@ public class MazeCreation : MonoBehaviour
         {
             //create new maze
             CreateMaze();
+
+            //reset player hud attributes
             player.ResetAmmo();
             player.ResetHealth();
             player.ResetKey();
 
             //set flag back to false for items not being deleted in the maze
             allItemsDeleted = false;
-
-            //stop displaying the game over text
-            //StartCoroutine(StopGameOverText());
         }
 
     }
@@ -60,7 +56,7 @@ public class MazeCreation : MonoBehaviour
     private void CreateMaze()
     {
         Camera.main.clearFlags = CameraClearFlags.Skybox;
-        //Camera.main.rect = new Rect(-.5f, 0f, 1f, 1f);
+
         //create instance of the maze for retrying level
         createdMaze = Instantiate(mazeInstance);
 

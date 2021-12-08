@@ -92,22 +92,5 @@ public class Predator : MonoBehaviour
         {
             direction = fovPredator.GetNewDirection();
         }
-
-        //if collide with a prey destroy the prey object and remove it from the list
-/*        if (collision.gameObject.tag == "Character")
-        {
-            *//* if (collision.gameObject != null)
-            {
-                Destroy(collision.gameObject);
-                for (int i = 0; i < listOfPrey.Count; i++)
-                {
-                    if (listOfPrey[i].gameObject == collision.gameObject)
-                    {
-                        listOfPrey[i] = null;
-                        listOfPrey.Remove(listOfPrey[i]);
-                    }
-                }
-            }*//*
-        }*/
     }
 }

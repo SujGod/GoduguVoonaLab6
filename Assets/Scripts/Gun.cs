@@ -15,12 +15,6 @@ public class Gun : MonoBehaviour
         player = GetComponentInParent<Character>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void FireBullet()
     {
         if (player.ammo != 0)

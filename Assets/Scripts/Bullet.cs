@@ -5,19 +5,6 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float bulletSpeed;
-    private Transform charTransform;
-    // Start is called before the first frame update
-
-    //create variables for audio sound to be played when collision occur
-    //public static AudioClip hitSound;
-    //public static AudioSource audioSource;
-
-    void Start()
-    {
-        //initialize coin collided sound
-        //audioSource = GetComponent<AudioSource>();
-        //hitSound = Resources.Load<AudioClip>("oof_sound");
-    }
 
     // Update is called once per frame
     void Update()
