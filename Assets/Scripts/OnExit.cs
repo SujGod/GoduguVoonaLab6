@@ -5,18 +5,11 @@ using UnityEngine;
 public class OnExit : MonoBehaviour
 {
     public bool exitReached;
-    /*    private void OnTriggerEnter(Collider other)
-        {
-            //set boolean flag to true on player collide with exit
-            if (other.CompareTag("Character"))
-            {
-                Character player = (Character)other.GetComponent(typeof(Character));
-                if (player.keyObtained)
-                {
-                    exitReached = true;
-                }
-            }
-        }*/
+    public GameObject player;
+    void Start()
+    {
+        
+    }
 
     private void OnCollisionEnter(Collision collision)
     {
@@ -27,6 +20,7 @@ public class OnExit : MonoBehaviour
             if (player.keyObtained)
             {
                 exitReached = true;
+                player.IncrementScore();
             }
         }
     }

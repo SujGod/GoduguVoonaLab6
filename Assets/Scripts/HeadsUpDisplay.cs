@@ -9,6 +9,8 @@ public class HeadsUpDisplay : MonoBehaviour
     public int ammo;
     public int health;
     public bool key;
+    public int score;
+
 
     public float maxHealth;
     public float maxAmmo;
@@ -17,6 +19,7 @@ public class HeadsUpDisplay : MonoBehaviour
     public Text ammoDisplay;
     public Text healthDisplay;
     public Text keyDisplay;
+    public Text scoreDisplay;
 
     public GameObject ammoBarUI;
     public Slider ammoBarSlider;
@@ -36,6 +39,7 @@ public class HeadsUpDisplay : MonoBehaviour
         ammo = player.ammo;
         health = player.health;
         key = player.keyObtained;
+        score = player.score;
 
         maxHealth = player.maxHealth;
         maxAmmo = player.maxAmmo;
@@ -53,12 +57,14 @@ public class HeadsUpDisplay : MonoBehaviour
         characterHealthSlider.value = health / maxHealth;
     }
 
+    
+
     // Update is called once per frame
     void Update()
     {
         ammoDisplay.text = ammo.ToString();
         healthDisplay.text = health.ToString();
-
+        scoreDisplay.text = score.ToString();
         characterHealthSlider.value = health / maxHealth;
         ammoBarSlider.value = ammo / maxAmmo;
 
@@ -81,6 +87,11 @@ public class HeadsUpDisplay : MonoBehaviour
         if (ammo != player.ammo)
         {
             ammo = player.ammo;
+        }
+
+        if (score != player.score)
+        {
+            score = player.score;
         }
 
         if (health != player.health)

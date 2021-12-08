@@ -9,6 +9,7 @@ public class Character : MonoBehaviour
     public float maxAmmo;
     public int health;
     public int ammo;
+    public int score;
     public bool keyObtained;
     private Maze maze;
 
@@ -22,6 +23,7 @@ public class Character : MonoBehaviour
         maxHealth = 5;
         health = (int)maxHealth;
         maxAmmo = 30;
+        score = 0;
         ammo = (int)(maxAmmo / 3);
         keyObtained = false;
         text.SetActive(false);
@@ -41,6 +43,10 @@ public class Character : MonoBehaviour
         {
             Debug.Log("YOU'RE OUT OF AMMO");
         }
+    }
+    public void IncrementScore()
+    {
+        score += 1;
     }
 
     public void ResetHealth()
